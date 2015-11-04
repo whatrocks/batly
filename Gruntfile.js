@@ -2,7 +2,10 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
     concat: {
+
+      // TODO insert details
     },
 
     mochaTest: {
@@ -21,11 +24,12 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      // TODO: insert where to look
     },
 
     jshint: {
       files: [
-        // Add filespec list here
+        // TODO: Add filespec list here
       ],
       options: {
         force: 'true',
@@ -38,7 +42,7 @@ module.exports = function(grunt) {
     },
 
     cssmin: {
-        // Add filespec list here
+        // TODO: Add filespec list here
     },
 
     watch: {
@@ -94,19 +98,18 @@ module.exports = function(grunt) {
     'mochaTest'
   ]);
 
-  grunt.registerTask('build', [
-  ]);
+  grunt.registerTask('build', ['concat']);
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
-      // add your production server task here
+      // TODO: add your production server task here
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
   });
 
   grunt.registerTask('deploy', [
-      // add your production server task here
+      // TODO: add your production server task here
   ]);
 
 
