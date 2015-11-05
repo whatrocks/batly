@@ -19,12 +19,6 @@ module.exports = function(grunt) {
           src  : ['public/client/*.js'],
           dest : 'public/dist/client.js'
         }
-        // },
-        // client: {
-        //   src: ['public/dist/**/*.js'],
-        //   dest: 'public/dist/client.js',
-        // },
-      
     },
 
     mochaTest: {
@@ -43,25 +37,35 @@ module.exports = function(grunt) {
     },
 
     uglify: {
-      // TODO: insert where to look
+      target : {
+        files: {
+          'public/min/vendor.min.js' : 'public/dist/vendor.js',
+          'public/min/client.min.js' : 'public/dist/client.js'
+        }
+      }
     },
 
     jshint: {
-      files: [
-        // TODO: Add filespec list here
-      ],
+      files: {
+        src: ['public/client/*.js']
+      },
       options: {
         force: 'true',
-        jshintrc: '.jshintrc',
-        ignores: [
-          'public/lib/**/*.js',
-          'public/dist/**/*.js'
-        ]
+        jshintrc: '.jshintrc'
+        // Note: We removed this ignore
+        // ignores: [
+        //   'public/lib/**/*.js',
+        //   'public/dist/**/*.js'
+        // ]
       }
     },
 
     cssmin: {
-        // TODO: Add filespec list here
+        target : {
+          files : {
+            'public/min/style.min.css' : 'public/dist/style.css'
+          }
+        }
     },
 
     watch: {
@@ -113,18 +117,11 @@ module.exports = function(grunt) {
   // Main grunt tasks
   ////////////////////////////////////////////////////
 
-
-  grunt.registerTask('hello', function() {
-    console.log("HELLO!!");
-  });
-
-
   grunt.registerTask('test', [
     'mochaTest'
   ]);
 
-  // NOTE - previously was 'build'
-  grunt.registerTask('build', ['hello', 'concat']);
+  grunt.registerTask('build', ['jshint', 'concat', 'uglify', 'cssmin']);
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
