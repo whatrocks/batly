@@ -4,8 +4,27 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     concat: {
-
-      // TODO insert details
+        options: {
+          separator: ';'
+        },
+        vendor: {
+          src  : ['public/lib/jquery.js', 'public/lib/underscore.js', 'public/lib/backbone.js', 'public/lib/handlebars.js'],
+          dest : 'public/dist/vendor.js'
+        },
+        css: {
+          src  : ['public/style.css'],
+          dest : 'public/dist/style.css'
+        },
+        js: {
+          src  : ['public/client/*.js'],
+          dest : 'public/dist/client.js'
+        }
+        // },
+        // client: {
+        //   src: ['public/dist/**/*.js'],
+        //   dest: 'public/dist/client.js',
+        // },
+      
     },
 
     mochaTest: {
@@ -94,11 +113,18 @@ module.exports = function(grunt) {
   // Main grunt tasks
   ////////////////////////////////////////////////////
 
+
+  grunt.registerTask('hello', function() {
+    console.log("HELLO!!");
+  });
+
+
   grunt.registerTask('test', [
     'mochaTest'
   ]);
 
-  grunt.registerTask('build', ['concat']);
+  // NOTE - previously was 'build'
+  grunt.registerTask('build', ['hello', 'concat']);
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
