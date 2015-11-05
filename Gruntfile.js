@@ -124,12 +124,12 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', ['jshint', 'concat', 'uglify', 'cssmin']);
 
-  grunt.registerTask('shellcommand', ['shell'] );
+  // grunt.registerTask('shellcommand', ['shell'] );
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
       // TODO: add your production server task here
-      grunt.task.run( ['shellcommand']);
+      grunt.task.run( ['shell:prodServer']);
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
