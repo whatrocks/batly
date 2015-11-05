@@ -118,26 +118,21 @@ module.exports = function(grunt) {
   // Main grunt tasks
   ////////////////////////////////////////////////////
 
-  grunt.registerTask('test', [
-    'mochaTest'
-  ]);
+  grunt.registerTask('test', [ 'mochaTest' ]);
 
   grunt.registerTask('build', ['jshint', 'concat', 'uglify', 'cssmin']);
-
-  // grunt.registerTask('shellcommand', ['shell'] );
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
       // TODO: add your production server task here
-      grunt.task.run( ['shell:prodServer']);
+      grunt.task.run( ['shell']);
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
   });
 
-  grunt.registerTask('deploy', [
-      'build', 'upload'
-  ]);
+  grunt.registerTask('deploy', [ 'build', 'upload' ]);
 
+  // grunt.registerTask('default', ['shell']);
 
 };
